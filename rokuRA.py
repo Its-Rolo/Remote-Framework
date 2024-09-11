@@ -5,7 +5,8 @@
 
 ##############
 # The IP Address must match the IP found in the Roku TV settings.
-# Room 1 IP Address: 192.168.68.101 (Room 1, closest to goodwin entrance)
+# The IP ADDRESSES ARE DYNAMIC AND MAY CHANGE.
+# Room 1 IP Address: 192.168.68.107 (Room 1, closest to goodwin entrance)
 # Room 2 IP Address: unknown (Room 2, furthest from goodwin entrance)
 
 ############### Options:
@@ -203,18 +204,8 @@ def select_option(ip):
             print("Invalid option, please try again.")
 
 
-# Asks the user to enter the room number and assigns the correct IP address accordingly
-#
-print("Available Rooms: 1, 2, where 1 is closest to the Goodwin entrance and 2 is furthest.")
-room = input("Enter the room number: ")
-if room == '1':
-    ip = "192.168.68.101"
-elif room == '2':
-    print("Room 2 not supported yet.")
-    ip = ""
-else:
-    print("Invalid entry.")
-    exit()
 
-# Runs the command line menu 
+
+# Prompts the IP address and Runs the command line menu 
+ip = input("Enter the IP Address of the Roku TV: ")
 select_option(ip)
