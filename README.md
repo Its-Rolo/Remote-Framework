@@ -28,7 +28,18 @@ Options:
 7. Custom keystroke -- Sends a custom keystroke to the TV given a key ID
 8. Exit
 
-# List of known Key IDs
+## Uninstallation
+
+Step 1, cd into the directory:
+```
+cd /usr/local/bin
+```
+Step 2, remove the file:
+```
+sudo rm rokuRA
+```
+
+## List of known Key IDs
 
 Arrow Keys:
 ```
