@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 ##############
 # Roku Remote Access ('rokuRA')
 # This script allows for remote access (so long as connected to 'Commons' Wifi) to the CASlab Roku TVs.
