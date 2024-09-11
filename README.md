@@ -1,13 +1,22 @@
-# RokuRogue
+# rokuRA
 ## Overview
-Did you know that many Roku TVs are exposing port 8600 to the entire internet? Well, Brandon Dorsey [discovered](https://medium.com/@brannondorsey/attacking-private-networks-from-the-internet-with-dns-rebinding-ea7098a2d325) that you can use DNS rebind attacks to turn smart device pwning into an absolute nightmare. In addition, he worked on exposing all of the cool things that can be done through port 8600 on Roku TVs.
-
-That's when it occured to me - how can I take this seemingly annoying issue, and make it more of a nightmare? I read the documentation and learned that you can actually install applications. Unfortunately, to do this, at least on ONN Roku TVs (which was my test case), you need to have a pin. Fortunately, getting a pin is as easy as a brute force! There's only a 4-digit pin in our way, with 10,000 possible combinations seperating us from the prize.
+rokuRA is a python script that allows for remote control (so long as on the same wifi as the television)
 
 ## Usage
-`python3 roku-rogue.py`
+Linux users can use curl to install the script as an executable:  
 
-Also download Web Video Caster on Android or iOS if you want to mirror media.
+Step 1:
+```
+sudo curl -L https://raw.githubusercontent.com/Its-Rolo/rokuRA/main/rokuRA.py -o /usr/local/bin/rokuRA
+```
+Step 2:
+```
+sudo chmod a+rx /usr/local/bin/rokuRA
+```
+The script can now be run via the 'rokuRA command in the terminal
+```
+rokuRA
+```
 
 Options:
 1. Install Web Cast -- Installs web cast, which can be used for pwning TVs with your own custom video content or MP3s. First, the script turns the volume down to 0 to ensure that the victim device will not disturb the owner with the sound of attempts or pin entry. Then, it runs through all of the combinations until it successfully brutes the pin to install the application. It then re-adjusts the volume to a reasonable level.
@@ -15,20 +24,63 @@ Options:
 3. Launch Web Cast -- Starts the Web Cast application, which will give you the ability to stream your media via the application.
 4. Launch Web Cast (PWN Mode: Be warned!) -- Turns the volume up to max, and then launches Web Cast.
 5. Launch Another App -- Starts your custom application by ID.
-6. Study Mode -- Sends a poweroff command every second to the TV until you kill the script.
-7. Exit
+6. Loop Shutdown -- Sends a poweroff command every second to the TV until you kill the script.
+7. Custom keystroke -- Sends a custom keystroke to the TV given a key ID
+8. Exit
+
+# List of known Key IDs
+
+Arrow Keys:
+```
+Up: "Up"
+Down: "Down"
+Left: "Left"
+Right: "Right"
+```
+Navigation Controls:
+```
+OK button: "Select"
+Back: "Back"
+Home: "Home"
+Info or asterisk button (*): "Info"
+```
+Playback Controls:
+```
+Play: "Play"
+Pause: "Pause"
+Toggle Play/Pause: "PlayPause"
+Rewind: "Rewind"
+Fast Forward: "FastForward"
+Reverse one frame: "ReverseFrame"
+Forward one frame: "ForwardFrame"
+Instant Replay: "InstantReplay"
+Open Search: "Search"
+```
+Media Control Keys:
+```
+Mute/Unmute: "VolumeMute"
+Channel Up: "ChannelUp"
+Channel Down: "ChannelDown"
+```
+Input Controls:
+```
+TV Input: "InputTuner"
+HDMI 1: "InputHDMI1"
+HDMI 2: "InputHDMI2"
+HDMI 3: "InputHDMI3"
+HDMI 4: "InputHDMI4"
+AV Input: "InputAV"
+Component Input: "InputComponent"
+```
+Special Commands:
+```
+Find Remote: "FindRemote" <- PLAYS NOISE THROUGH COMPATIBLE REMOTES!!!!!!
+Sleep Mode: "Sleep"
+Wake Up: "WakeUp"
+```
 
 ## Custom Apps
 Maybe you'd rather install a custom app. If you have a Roku TV, install the app, and then navigate to http://ip:8060/query/apps to get the App ID, then you can pass the application ID via the options to install that app instead of webcast.
 
 Here is an example of what it looks like, where 2595 is the app id:
 `<app id="2595" type="appl" version="4.8.1110">Crunchyroll</app>`
-
-# Proof of Concept
-## App Install Bruteforce
-
-https://user-images.githubusercontent.com/39013067/227747518-5ee5e888-1752-4616-bbaf-691d68ae7f8a.mp4
-
-## Playing a Video Remotely via Installed Webcast + Mobile App
-
-https://user-images.githubusercontent.com/39013067/227747726-6f8dfd6c-92f5-45ee-a3cc-805e2578e2dc.mp4
