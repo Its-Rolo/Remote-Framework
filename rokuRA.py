@@ -237,6 +237,14 @@ def select_option(ip):
 # The base IP address is set to 192.168.68.____ where the last 3 digits are missing
 base_ip = "192.168.68"
 
+print("""
+            _          _____            
+           | |        |  __ \     /\    
+  _ __ ___ | | ___   _| |__) |   /  \   
+ | '__/ _ \| |/ / | | |  _  /   / /\ \  
+ | | | (_) |   <| |_| | | \ \  / ____ \ 
+ |_|  \___/|_|\_|\__,_|_|  \_\/_/    \_\ """)
+
 # Prompts for the ip address, and if it is empty it will attempt to automatically detect the ip address
 ip = input("Enter the IP Address of the Roku TV (no input will result in automatic detection): ")
 
