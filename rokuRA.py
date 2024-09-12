@@ -250,24 +250,31 @@ ip = input("\nEnter the IP Address of the Roku TV (no input will result in autom
 
 # automatic detection
 if ip == "":
+    timeout = input("\n Please input the delay between each scan, higher values will result in a slower scan but lower values may skip over the device: ")
     # Iterate through the last octet from 255 to 0
     for i in range(255, -1, -1):
         # Construct the full IP address
         ip = f"{base_ip}.{i}"
         url = f"http://{ip}:8060/query/device-info"
 
+        if i == 0:
+            print("No Roku device found.")
+            exit()
+
         try:
             # Send a request to the Roku device info endpoint
-            response = requests.get(url, timeout=0.5)  # Timeout set to 0.5 seconds to speed up the scan
+            response = requests.get(url, timeout=float(timeout))  # Timeout set to 0.5 seconds to speed up the scan
             if response.status_code == 200:
                 print(f"Roku found at: {ip}")
                 print(f"Device info: {response.json()}")
                 break  # Exit the loop once the Roku device is found
         except requests.ConnectionError:
             # If the connection fails, just continue to the next IP
+            print(f"Connection error, moving to next ip, {i}")
             continue
         except requests.Timeout:
             # If the request times out, continue to the next IP
+            print("Timeout, moving to next ip, {i}")
             continue
 
 print("Scan completed.")
