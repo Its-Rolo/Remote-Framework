@@ -9,9 +9,6 @@ Linux users can use curl to install the script as an executable:
 Step 1:
 ```
 sudo curl -L https://raw.githubusercontent.com/Its-Rolo/rokuRA/main/rokuRA.py -o /usr/local/bin/rokuRA
-```
-Step 2:
-```
 sudo chmod a+rx /usr/local/bin/rokuRA
 ```
 The script can now be run via the 'rokuRA command in the terminal
@@ -19,15 +16,31 @@ The script can now be run via the 'rokuRA command in the terminal
 rokuRA
 ```
 
-Options:
-1. Install Web Cast -- Installs web cast, which can be used for pwning TVs with your own custom video content or MP3s. First, the script turns the volume down to 0 to ensure that the victim device will not disturb the owner with the sound of attempts or pin entry. Then, it runs through all of the combinations until it successfully brutes the pin to install the application. It then re-adjusts the volume to a reasonable level.
-2. Install Another App -- Same as option 1, except you can enter the app ID of the app you want to install. Please see "Custom Apps" for details.
-3. Launch Web Cast -- Starts the Web Cast application, which will give you the ability to stream your media via the application.
-4. Launch Web Cast (PWN Mode: Be warned!) -- Turns the volume up to max, and then launches Web Cast.
-5. Launch Another App -- Starts your custom application by ID.
-6. Loop Shutdown -- Sends a poweroff command every second to the TV until you kill the script.
-7. Custom keystroke -- Sends a custom keystroke to the TV given a key ID
-8. Exit
+# Before executing the script, you must first identify the IP address of the Roku TV. This can be done in multiple ways:
+Method 1: Directly from the Roku TV  
+
+In settings, you can find the local IP address in the network -> about section.  
+  
+Method 2: nmap scan (Steps below are for linux)
+
+If you do not have access to the Roku TV / Remote, you can use nmap to scan the network and identify connected devices.  
+  
+Step 1: Identify the networks IP address  
+open the terminal and input the following command:
+```
+ip addr
+```
+A large amount of text will show up. Look for the IP that comes after "inet" and copy it entirely including the number after the '/'
+
+Step 2: Scan the IP with nmap
+In the terminal, run the command:
+```
+sudo nmap -sn IP_ADDRESS/HERE
+```
+(Obviously replace the last part with the ip address, for example '192.###.#.###/##'
+This will display all devices connected to the network. Locate the Roku TV and note down the IP to be inputted when running the script.
+    
+
 
 ## Uninstallation
 
