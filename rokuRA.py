@@ -241,7 +241,7 @@ base_ip = "192.168.68"
 ip = input("Enter the IP Address of the Roku TV (no input will result in automatic detection): ")
 
 # automatic detection
-if ip = "":
+if ip == "":
     # Iterate through the last octet from 255 to 0
     for i in range(255, -1, -1):
         # Construct the full IP address
