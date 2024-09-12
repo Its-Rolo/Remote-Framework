@@ -26,22 +26,20 @@ Method 2: nmap scan (Steps below are for linux)
 If you do not have access to the Roku TV / Remote, you can use nmap to scan the network and identify connected devices.  
   
 Step 1: Identify the networks IP address  
-open the terminal and input the following command:
+open the terminal and input the following command:  
 ```
 ip addr
 ```
-A large amount of text will show up. Look for the IP that comes after "inet" and copy it entirely including the number after the '/'
+A large amount of text will show up. Look for the IP that comes after "inet" and copy it entirely including the number after the '/'  
 
-Step 2: Scan the IP with nmap
-In the terminal, run the command:
+Step 2: Scan the IP with nmap  
+In the terminal, run the command:  
 ```
 sudo nmap -sn IP_ADDRESS/HERE
 ```
-(Obviously replace the last part with the ip address, for example '192.###.#.###/##'
-This will display all devices connected to the network. Locate the Roku TV and note down the IP to be inputted when running the script.
+(Obviously replace the last part with the ip address, for example '192.###.#.###/##'  
+This will display all devices connected to the network. Locate the Roku TV and note down the IP to be inputted when running the script.  
     
-
-
 ## Uninstallation
 
 Step 1, cd into the directory:
