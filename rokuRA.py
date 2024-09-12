@@ -246,7 +246,7 @@ print("""
  |_|  \___/|_|\_|\__,_|_|  \_\/_/    \_\ """)
 
 # Prompts for the ip address, and if it is empty it will attempt to automatically detect the ip address
-ip = input("Enter the IP Address of the Roku TV (no input will result in automatic detection): ")
+ip = input("\nEnter the IP Address of the Roku TV (no input will result in automatic detection): ")
 
 # automatic detection
 if ip == "":
