@@ -12,7 +12,7 @@ Step 1:
 sudo curl -L https://raw.githubusercontent.com/Its-Rolo/rokuRA/main/rokuRA.py -o /usr/local/bin/rokuRA
 sudo chmod a+rx /usr/local/bin/rokuRA
 ```
-The script can now be run via the 'rokuRA command in the terminal
+The script can now be run via the 'rokuRA' command in the terminal
 ```
 rokuRA
 ```
@@ -21,6 +21,12 @@ rokuRA
 Method 1: Directly from the Roku TV  
 
 In settings, you can find the local IP address in the network -> about section.  
+
+Method 2: Automatic detection through the script  
+
+When prompted by the script to input an IP, instead press enter without inputting anything.  
+It will then prompt you for a timeout/delay value. 0.5 - 1 is recommended.  
+Now wait while the script automatically checks each final value on the base_ip
   
 Method 2: nmap scan (Steps below are for linux)
 
