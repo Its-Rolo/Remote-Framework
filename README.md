@@ -44,6 +44,10 @@ In the terminal, run the command:
 ```
 sudo nmap -sn IP_ADDRESS/HERE
 ```
+Or more specifically for port 8060 (For Roku TVs):
+```
+sudo nmap -p 8060 IP_ADDRESS/HERE)
+```
 (Obviously replace the last part with the ip address, for example '192.###.#.###/##'  
 This will display all devices connected to the network. Locate the Roku TV and note down the IP to be inputted when running the script.  
     
