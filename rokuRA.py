@@ -74,6 +74,8 @@
 # Component Input: "InputComponent"
 
 # Special Commands:
+# Turn On: "PowerOn"
+# Turn Off: "PowerOff"
 # Find Remote: "FindRemote" <- PLAYS NOISE THROUGH COMPATIBLE REMOTES!!!!!!
 # Sleep Mode: "Sleep"
 # Wake Up: "WakeUp"
