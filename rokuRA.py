@@ -130,11 +130,33 @@ def install_app(ip, app_id):
     else:
         print(f"Failed to install app {app_id}.")
 
+
+
+# EXPERMIMENTAL, NOT TESTED
+def capture_screenshot(ip):
+    url = f"http://{ip}:8060/plugin_inspect"
+
+    try:
+        # Send the GET request to capture the screenshot
+        response = requests.get(url, stream=True)
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            # Save the screenshot as a file
+            with open("roku_screenshot.png", "wb") as file:
+                for chunk in response.iter_content(1024):
+                    file.write(chunk)
+            print("Screenshot saved as 'roku_screenshot.png'")
+        else:
+            print(f"Failed to take screenshot: {response.status_code} {response.reason}")
+    except Exception as e:
+        print(f"An error occurred: {e}")      
+
 def select_option(ip):
     while True:
 
         # Display all options
-        option = input("\nSelect an Option: \n1. Install Web Cast\n2. Install Another App\n3. Launch Web Cast\n4. Launch Web Cast (PWN Mode: Be warned!)\n5. Launch Another App\n6. Loop Shutdown\n7. Custom Keystroke\n8. Exit\n")
+        option = input("\nSelect an Option: \n1. Install Web Cast\n2. Install Another App\n3. Launch Web Cast\n4. Launch Web Cast (PWN Mode: Be warned!)\n5. Launch Another App\n6. Loop Shutdown\n7. Custom Keystroke\n8. Screenshot (EXPERIMENTAL)\n 9. Exit\n")
         
         # Option 1, installs the Web Video Caster application
         if option == '1':
@@ -197,8 +219,11 @@ def select_option(ip):
             keystroke = input("Enter the key ID: ")
             send_keypress(ip, keystroke)
 
-        # Option 8, exits the script
         elif option == '8':
+            capture_screenshot(ip)
+
+        # Option 8, exits the script
+        elif option == '9':
             exit()
         else:
             print("Invalid option, please try again.")
@@ -206,6 +231,36 @@ def select_option(ip):
 
 
 
-# Prompts the IP address and Runs the command line menu 
-ip = input("Enter the IP Address of the Roku TV: ")
+
+
+
+# The base IP address is set to 192.168.68.____ where the last 3 digits are missing
+base_ip = "192.168.68"
+
+# Prompts for the ip address, and if it is empty it will attempt to automatically detect the ip address
+ip = input("Enter the IP Address of the Roku TV (no input will result in automatic detection): ")
+
+# automatic detection
+if ip = "":
+    # Iterate through the last octet from 255 to 0
+    for i in range(255, -1, -1):
+        # Construct the full IP address
+        ip = f"{base_ip}.{i}"
+        url = f"http://{ip}:8060/query/device-info"
+
+        try:
+            # Send a request to the Roku device info endpoint
+            response = requests.get(url, timeout=0.5)  # Timeout set to 0.5 seconds to speed up the scan
+            if response.status_code == 200:
+                print(f"Roku found at: {ip}")
+                print(f"Device info: {response.json()}")
+                break  # Exit the loop once the Roku device is found
+        except requests.ConnectionError:
+            # If the connection fails, just continue to the next IP
+            continue
+        except requests.Timeout:
+            # If the request times out, continue to the next IP
+            continue
+
+print("Scan completed.")
 select_option(ip)
