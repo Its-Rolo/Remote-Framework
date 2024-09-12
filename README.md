@@ -16,7 +16,7 @@ The script can now be run via the 'rokuRA command in the terminal
 rokuRA
 ```
 
-# Before executing the script, you must first identify the IP address of the Roku TV. This can be done in multiple ways:
+## Before executing the script, you must first identify the IP address of the Roku TV. This can be done in multiple ways:
 Method 1: Directly from the Roku TV  
 
 In settings, you can find the local IP address in the network -> about section.  
