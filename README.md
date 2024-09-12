@@ -3,7 +3,7 @@
 rokuRA is a python script that allows for remote control of a Roku TV (so long as on the same wifi as the television)
 
 ## Usage
-STEPS BELOW ARE NOT POSSIBLE WHILE REPO IS PRIVATE
+STEPS BELOW ARE NOT POSSIBLE WHILE REPO IS PRIVATE  
 Linux users can use curl to install the script as an executable:  
 
 Step 1:
