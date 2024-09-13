@@ -25,31 +25,9 @@ In settings, you can find the local IP address in the network -> about section.
 Method 2: Automatic detection through the script  
 
 When prompted by the script to input an IP, instead press enter without inputting anything.  
+It will first prompt you for a base IP, as it will only scan for the last 3 digits.
 It will then prompt you for a timeout/delay value. 0.5 - 1 is recommended.  
 Now wait while the script automatically checks each final value on the base_ip
-  
-Method 2: nmap scan (Steps below are for linux)
-
-If you do not have access to the Roku TV / Remote, you can use nmap to scan the network and identify connected devices.  
-  
-Step 1: Identify the networks IP address  
-open the terminal and input the following command:  
-```
-ip addr
-```
-A large amount of text will show up. Look for the IP that comes after "inet" and copy it entirely including the number after the '/'  
-
-Step 2: Scan the IP with nmap  
-In the terminal, run the command:  
-```
-sudo nmap -sn IP_ADDRESS/HERE
-```
-Or more specifically for port 8060 (For Roku TVs):
-```
-sudo nmap -p 8060 IP_ADDRESS/HERE)
-```
-(Obviously replace the last part with the ip address, for example '192.###.#.###/##'  
-This will display all devices connected to the network. Locate the Roku TV and note down the IP to be inputted when running the script.  
     
 ## Uninstallation
 
