@@ -9,31 +9,6 @@
 # Room 1 IP Address: 130.15.15.239 (Room 1, closest to goodwin entrance)
 # Room 2 IP Address: unknown (Room 2, furthest from goodwin entrance)
 
-############### Options:
-#
-# 1. Install Web Cast
-# This will automatically install the 'web cast' application.
-#
-# 2. Install Another App
-# This will allow you to install any app by entering the app number.
-#
-# 3. Launch Web Cast
-# This will launch the 'web cast' application.
-#
-# 4. Launch Web Cast (PWN Mode: Be warned!)
-# This will launch the 'web cast' application and increase the volume to the maximum level.
-#
-# 5. Launch Another App
-# This will allow you to launch any app by entering the app ID.
-#
-# 6. Loop Shutdown
-# This will continuously power off the TV. Press Ctrl+C to exit the script.
-#
-# 7. Custom Keystroke
-# This will allow you to send a custom keypress to the TV. Enter the key ID when prompted.
-#
-# 8. Exit
-# This will exit the script.
 
 ############## Known Key IDs (strings):
 # Arrow Keys:
@@ -132,33 +107,13 @@ def install_app(ip, app_id):
     else:
         print(f"Failed to install app {app_id}.")
 
-
-
-# EXPERMIMENTAL, NOT TESTED
-def capture_screenshot(ip):
-    url = f"http://{ip}:8060/plugin_inspect"
-
-    try:
-        # Send the GET request to capture the screenshot
-        response = requests.get(url, stream=True)
-
-        # Check if the request was successful
-        if response.status_code == 200:
-            # Save the screenshot as a file
-            with open("roku_screenshot.png", "wb") as file:
-                for chunk in response.iter_content(1024):
-                    file.write(chunk)
-            print("Screenshot saved as 'roku_screenshot.png'")
-        else:
-            print(f"Failed to take screenshot: {response.status_code} {response.reason}")
-    except Exception as e:
-        print(f"An error occurred: {e}")      
+  
 
 def select_option(ip):
     while True:
 
         # Display all options
-        option = input("\nSelect an Option: \n1. Max out Volume\n2. Minimize Volume\n3. Launch Web Cast\n4. Launch Web Cast (PWN Mode: Be warned!)\n5. Launch Another App\n6. Loop Shutdown\n7. Custom Keystroke\n8. Screenshot (EXPERIMENTAL)\n 9. Exit\n")
+        option = input("\nSelect an Option: \n1. Max out Volume\n2. Minimize Volume\n3. Launch Web Cast\n4. Launch Web Cast (PWN Mode: Be warned!)\n5. Launch Another App\n6. Loop Shutdown\n7. Custom Keystroke\n8. NOT WORKING\n9. Exit\n")
         
         # Option 1, increases the volume to the maximum level
         if option == '1':
@@ -211,8 +166,6 @@ def select_option(ip):
             keystroke = input("Enter the key ID: ")
             send_keypress(ip, keystroke)
 
-        elif option == '8':
-            capture_screenshot(ip)
 
         # Option 8, exits the script
         elif option == '9':
