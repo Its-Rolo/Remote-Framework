@@ -6,7 +6,7 @@
 ##############
 # The IP Address must match the IP found in the Roku TV settings.
 # The IP ADDRESSES ARE DYNAMIC AND MAY CHANGE.
-# Room 1 IP Address: 192.168.68.107 (Room 1, closest to goodwin entrance)
+# Room 1 IP Address: 130.15.15.239 (Room 1, closest to goodwin entrance)
 # Room 2 IP Address: unknown (Room 2, furthest from goodwin entrance)
 
 ############### Options:
@@ -158,31 +158,21 @@ def select_option(ip):
     while True:
 
         # Display all options
-        option = input("\nSelect an Option: \n1. Install Web Cast\n2. Install Another App\n3. Launch Web Cast\n4. Launch Web Cast (PWN Mode: Be warned!)\n5. Launch Another App\n6. Loop Shutdown\n7. Custom Keystroke\n8. Screenshot (EXPERIMENTAL)\n 9. Exit\n")
+        option = input("\nSelect an Option: \n1. Max out Volume\n2. Minimize Volume\n3. Launch Web Cast\n4. Launch Web Cast (PWN Mode: Be warned!)\n5. Launch Another App\n6. Loop Shutdown\n7. Custom Keystroke\n8. Screenshot (EXPERIMENTAL)\n 9. Exit\n")
         
-        # Option 1, installs the Web Video Caster application
+        # Option 1, increases the volume to the maximum level
         if option == '1':
-            if check_app_installed(ip, "259656"):
-                print("Web Video Caster is already installed")
-            else:
-                # Decreases volume to 0
-                for i in tqdm(range(100), desc="Adjusting Volume"):
-                    send_keypress(ip, "VolumeDown")
+            for i in tqdm(range(100), desc="Adjusting Volume"):
+                send_keypress(ip, "VolumeUp")
+            requests.post(f"http://{ip}:8060/launch/259656")
 
-                # Attempts to install the app
-                requests.post(f"http://{ip}:8060/install/259656")
-                
-                if try_combinations(ip, "259656"):
-                    print("Web Video Caster successfully installed.")
-
-                    # Increases volume back up to 15
-                    for i in tqdm(range(15), desc="Adjusting Volume"):
-                        send_keypress(ip, "VolumeUp")
-                else:
-                    print("Failed to install Web Video Caster.")
+        if option == '2':
+            for i in tqdm(range(100), desc="Adjusting Volume"):
+                send_keypress(ip, "VolumeDown")
+            requests.post(f"http://{ip}:8060/launch/259656")
 
         # Option 2, installs any app given the app ID
-        elif option == '2':
+        elif option == '10':
             app_id = input("Enter the app number: ")
             if check_app_installed(ip, app_id):
                 print(f"App {app_id} is already installed")
