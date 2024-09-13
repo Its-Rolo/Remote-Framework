@@ -226,8 +226,8 @@ def select_option(ip):
 
 
 
-# The base IP address is set to 192.168.68.____ where the last 3 digits are missing
-base_ip = "192.168.68"
+# The base IP address is set to ###.###.##.____ where the last 3 digits are missing
+base_ip = ""
 
 print("""
             _          _____            
@@ -242,6 +242,7 @@ ip = input("\nEnter the IP Address of the Roku TV (no input will result in autom
 
 # automatic detection
 if ip == "":
+    base_ip = input("Enter the base IP: ")
     timeout = input("\n Please input the delay between each scan, higher values will result in a slower scan but lower values may skip over the device: ")
     # Iterate through the last octet from 255 to 0
     for i in range(255, -1, -1):
@@ -257,9 +258,8 @@ if ip == "":
             # Send a request to the Roku device info endpoint
             response = requests.get(url, timeout=float(timeout))  # Timeout set to 0.5 seconds to speed up the scan
             if response.status_code == 200:
-                print(f"Roku found at: {ip}")
-                print(f"Device info: {response.json()}")
-                break  # Exit the loop once the Roku device is found
+                print(f"Possible Roku found at: {ip}")
+                continue
         except requests.ConnectionError:
             # If the connection fails, just continue to the next IP
             print(f"Connection error, moving to next ip, {i}")
