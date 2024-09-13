@@ -10,53 +10,6 @@
 # Room 2 IP Address: unknown (Room 2, furthest from goodwin entrance)
 
 
-############## Known Key IDs (strings):
-# Arrow Keys:
-# Up: "Up"
-# Down: "Down"
-# Left: "Left"
-# Right: "Right"
-
-# Navigation Controls:
-# OK button: "Select"
-# Back: "Back"
-# Home: "Home"
-# Info or asterisk button (*): "Info"
-
-# Playback Controls:
-# Play: "Play"
-# Pause: "Pause"
-# Toggle Play/Pause: "PlayPause"
-# Rewind: "Rewind"
-# Fast Forward: "FastForward"
-# Reverse one frame: "ReverseFrame"
-# Forward one frame: "ForwardFrame"
-# Instant Replay: "InstantReplay"
-# Open Search: "Search"
-
-# Media Control Keys:
-# Mute/Unmute: "VolumeMute"
-# Channel Up: "ChannelUp"
-# Channel Down: "ChannelDown"
-
-# Input Controls:
-# TV Input: "InputTuner"
-# HDMI 1: "InputHDMI1"
-# HDMI 2: "InputHDMI2"
-# HDMI 3: "InputHDMI3"
-# HDMI 4: "InputHDMI4"
-# AV Input: "InputAV"
-# Component Input: "InputComponent"
-
-# Special Commands:
-# Turn On: "PowerOn"
-# Turn Off: "PowerOff"
-# Find Remote: "FindRemote" <- PLAYS NOISE THROUGH COMPATIBLE REMOTES!!!!!!
-# Sleep Mode: "Sleep"
-# Wake Up: "WakeUp"
-
-
-
 # Importing necessary libraries
 import requests
 import time
