@@ -85,7 +85,7 @@ def draw_menu():
     print("\033[35m╠>\033[0m (5) Launch App")
     print("\033[35m╠>\033[0m (6) Install an App")
     print("\033[35m╠>\033[0m (7) Exit")
-    print("\033[35m╚═════════")
+    print("\033[35m╚═════════\033[0m")
 
 def select_option(ip):
     while True:
