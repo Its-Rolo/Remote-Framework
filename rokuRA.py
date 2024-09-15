@@ -2,6 +2,21 @@
 ##############
 # Roku Remote Access ('rokuRA')
 
+# Double-line box drawing characters:
+# Corners:
+# ╔  ╗  ╚  ╝
+
+# Horizontal and vertical lines:
+# ═  (Double horizontal line)
+# ║  (Double vertical line)
+
+# Intersections:
+# ╦  (Top intersection)
+# ╩  (Bottom intersection)
+# ╠  (Left intersection)
+# ╣  (Right intersection)
+# ╬  (Center intersection)
+
 # Importing necessary libraries
 import requests
 import time
@@ -53,51 +68,47 @@ def install_app(ip, app_id):
         print(f"Failed to install app {app_id}.")
 
   
+def draw_menu():
+    print("""\033[35m
+██████╗  ██████╗ ██╗  ██╗██╗   ██╗      ██████╗  █████╗ 
+██╔══██╗██╔═══██╗██║ ██╔╝██║   ██║      ██╔══██╗██╔══██╗
+██████╔╝██║   ██║█████╔╝ ██║   ██║█████╗██████╔╝███████║
+██╔══██╗██║   ██║██╔═██╗ ██║   ██║╚════╝██╔══██╗██╔══██║
+██║  ██║╚██████╔╝██║  ██╗╚██████╔╝      ██║  ██║██║  ██║
+╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝       ╚═╝  ╚═╝╚═╝  ╚═╝""")
+    print("\033[0m")
+    print("\033[35m╔═════════>\033[0m Select an Option")
+    print("\033[35m╠>\033[0m (1) Custom Input")
+    print("\033[35m╠>\033[0m (2) Max out Volume")
+    print("\033[35m╠>\033[0m (3) Minimize Volume")
+    print("\033[35m╠>\033[0m (3) Loop Shutdown")
+    print("\033[35m╠>\033[0m (5) Launch App")
+    print("\033[35m╠>\033[0m (6) Install an App")
+    print("\033[35m╠>\033[0m (7) Exit")
+    print("\033[35m╚═════════")
 
 def select_option(ip):
     while True:
 
         # Display all options
-        option = input("\nSelect an Option: \n1. Max out Volume\n2. Minimize Volume\n3. Launch Web Cast\n4. Launch Web Cast (PWN Mode: Be warned!)\n5. Launch Another App\n6. Loop Shutdown\n7. Custom Keystroke\n8. NOT WORKING\n9. Exit\n")
+        draw_menu()
+        option = input("")
         
-        # Option 1, increases the volume to the maximum level
         if option == '1':
+            keystroke = input("Enter the key ID: ")
+            send_keypress(ip, keystroke)
+
+        elif option == '2':
             for i in tqdm(range(100), desc="Adjusting Volume"):
                 send_keypress(ip, "VolumeUp")
             requests.post(f"http://{ip}:8060/launch/259656")
 
-        if option == '2':
+        elif option == '3':
             for i in tqdm(range(100), desc="Adjusting Volume"):
                 send_keypress(ip, "VolumeDown")
             requests.post(f"http://{ip}:8060/launch/259656")
 
-        # Option 2, installs any app given the app ID
-        elif option == '10':
-            app_id = input("Enter the app number: ")
-            if check_app_installed(ip, app_id):
-                print(f"App {app_id} is already installed")
-            else:
-                install_app(ip, app_id)
-
-        # Option 3, launches the Web Video Caster application
-        elif option == '3':
-            requests.post(f"http://{ip}:8060/launch/259656")
-            print("App successfully launched! Please download the Web Video Caster application on your phone to interact with the TV.")
-
-        # Option 4, launches the Web Video Caster application and increases the volume to the maximum level
         elif option == '4':
-            for i in tqdm(range(100), desc="Adjusting Volume"):
-                send_keypress(ip, "VolumeUp")
-            requests.post(f"http://{ip}:8060/launch/259656")
- 
-        # Option 5, launches any app given the app ID
-        elif option == '5':
-            app_id = input("Enter the app number: ")
-            requests.post(f"http://{ip}:8060/launch/{app_id}")
-            print("Custom app launched!")
-
-        # Option 6, continuously powers off the TV
-        elif option == '6':
             print("Powering off the TV. Press Ctrl+C to exit.")
             while True:
                 try:
@@ -106,14 +117,19 @@ def select_option(ip):
                 except KeyboardInterrupt:
                     break
 
-        
+        elif option == '5':
+            app_id = input("Enter the app number: ")
+            requests.post(f"http://{ip}:8060/launch/{app_id}")
+            print("Custom app launched!")
+
+        elif option == '6':
+            app_id = input("Enter the app number: ")
+            if check_app_installed(ip, app_id):
+                print(f"App {app_id} is already installed")
+            else:
+                install_app(ip, app_id)
+
         elif option == '7':
-            keystroke = input("Enter the key ID: ")
-            send_keypress(ip, keystroke)
-
-
-        # Option 8, exits the script
-        elif option == '9':
             exit()
         else:
             print("Invalid option, please try again.")
@@ -121,19 +137,11 @@ def select_option(ip):
 
 
 
-
+#requests.post(f"http://{ip}:8060/launch/259656") --- launches an app
 
 
 # The base IP address is set to ###.###.##.____ where the last 3 digits are missing
 base_ip = ""
-
-print("""
-            _          _____            
-           | |        |  __ \     /\    
-  _ __ ___ | | ___   _| |__) |   /  \   
- | '__/ _ \| |/ / | | |  _  /   / /\ \  
- | | | (_) |   <| |_| | | \ \  / ____ \ 
- |_|  \___/|_|\_|\__,_|_|  \_\/_/    \_\ """)
 
 # Prompts for the ip address, and if it is empty it will attempt to automatically detect the ip address
 ip = input("\nEnter the IP Address of the Roku TV (no input will result in automatic detection): ")
