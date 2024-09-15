@@ -1,14 +1,6 @@
 #!/usr/bin/env python3
 ##############
 # Roku Remote Access ('rokuRA')
-# This script allows for remote access (so long as connected to 'Commons' Wifi) to the CASlab Roku TVs.
-
-##############
-# The IP Address must match the IP found in the Roku TV settings.
-# The IP ADDRESSES ARE DYNAMIC AND MAY CHANGE.
-# Room 1 IP Address: 130.15.15.239 (Room 1, closest to goodwin entrance)
-# Room 2 IP Address: unknown (Room 2, furthest from goodwin entrance)
-
 
 # Importing necessary libraries
 import requests
