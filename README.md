@@ -41,7 +41,7 @@ Step 2, remove the file:
 sudo rm rokuRA
 ```
 
-## List of known Key IDs
+## List of possible Key IDs
 
 Arrow Keys:
 ```
