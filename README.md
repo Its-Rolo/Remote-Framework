@@ -4,6 +4,7 @@ rokuRA (Roku Remote Access) is a python script that allows for you to control yo
 To do this, you must have access to both the wifi network that the Roku is connected to and the local IP address of the television.  
 Do not attempt to use rokuRA on any devices that you do not own.  
 rokuRA was created as a project to learn about HTTP requests and networking, and is to be used strictly as a learning tool for such topics.
+![alt text](https://github.com/Its-Rolo/rokuRA/blob/main/rokuRA.png?raw=true)
 
 ## Usage 
 Linux users can use curl to install the script as an executable:  
