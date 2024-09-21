@@ -49,11 +49,7 @@ def try_combinations(ip, app_id):
 
 # Function for installing an app given the app ID
 def install_app(ip, app_id):
-
-    # Changing volume down to 0
-    for i in tqdm(range(100), desc="Adjusting Volume"):
-        send_keypress(ip, "VolumeDown")
-
+    
     # Attempts to install the app
     requests.post(f"http://{ip}:8060/install/{app_id}")
 
@@ -99,12 +95,12 @@ def select_option(ip):
             send_keypress(ip, keystroke)
 
         elif option == '2':
-            for i in tqdm(range(100), desc="Adjusting Volume"):
+            for i in tqdm(range(100), desc="Adjusting Volume Up"):
                 send_keypress(ip, "VolumeUp")
             requests.post(f"http://{ip}:8060/launch/259656")
 
         elif option == '3':
-            for i in tqdm(range(100), desc="Adjusting Volume"):
+            for i in tqdm(range(100), desc="Adjusting Volume Down"):
                 send_keypress(ip, "VolumeDown")
             requests.post(f"http://{ip}:8060/launch/259656")
 
@@ -118,7 +114,7 @@ def select_option(ip):
                     break
 
         elif option == '5':
-            app_id = input("Enter the app number: ")
+            app_id = input("Enter the app ID: ")
             requests.post(f"http://{ip}:8060/launch/{app_id}")
             print("Custom app launched!")
 
@@ -144,13 +140,13 @@ def select_option(ip):
 base_ip = ""
 
 # Prompts for the ip address, and if it is empty it will attempt to automatically detect the ip address
-ip = input("\nEnter the IP Address of the Roku TV (no input will result in automatic detection): ")
+ip = input("\nEnter the IP Address of the Roku TV (Leave empty for auto-detection): ")
 
 # automatic detection
 if ip == "":
     base_ip = input("Enter the base IP: ")
     timeout = input("\n Please input the delay between each scan, higher values will result in a slower scan but lower values may skip over the device: ")
-    # Iterate through the last octet from 255 to 0
+    # Iterate through the last octet (3 digits) from 255 to 0
     for i in range(255, -1, -1):
         # Construct the full IP address
         ip = f"{base_ip}.{i}"
