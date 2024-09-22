@@ -7,7 +7,7 @@ Do not attempt to use rokuRA on any devices that you do not own.
 ![alt text](https://github.com/Its-Rolo/rokuRA/blob/main/rokuRA.png?raw=true)
 
 ## Usage 
-Linux users can use curl to install the script as an executable:  
+Linux users can use curl to install the script and make it executable:  
 
 Step 1:
 ```
