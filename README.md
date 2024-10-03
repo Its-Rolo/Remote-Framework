@@ -114,3 +114,7 @@ Maybe you'd rather install a custom app. If you have a Roku TV, install the app,
 
 Here is an example of what it looks like, where 2595 is the app id:
 `<app id="2595" type="appl" version="4.8.1110">Crunchyroll</app>`
+
+## License
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
