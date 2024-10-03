@@ -18,7 +18,8 @@ Do not attempt to use rokuRA on any devices that you do not own.
 5. Launch App - launches an application of choice given the ID  
 6. Install an App - installs an application of choice given the ID  
   
-Feel free to customize the functions in rokuRA.py to best suit your needs.
+These are mostly examples to showcase the possibilities of this program,  
+feel free to customize the functions in rokuRA.py to more practical features to best suit your needs.
 
 ## Usage 
 Linux users can use curl to install the script and make it executable:  
