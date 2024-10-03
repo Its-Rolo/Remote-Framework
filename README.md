@@ -10,6 +10,16 @@ I wanted to design a program that can manage and control your roku devices from 
 Do not attempt to use rokuRA on any devices that you do not own.  
 ![alt text](https://github.com/Its-Rolo/rokuRA/blob/main/rokuRA.png?raw=true)
 
+## Features
+1. Custom Input - Allows for custom keystrokes/inputs  
+2. Max out volume - maximizes the volume to 100.  
+3. Minimize volume - minimizes the volume to 0.  
+4. Loop shutdown - constantly shutsdown the TV. No more distractions!  
+5. Launch App - launches an application of choice given the ID  
+6. Install an App - installs an application of choice given the ID  
+  
+Feel free to customize the functions in rokuRA.py to best suit your needs.
+
 ## Usage 
 Linux users can use curl to install the script and make it executable:  
 
