@@ -18,10 +18,12 @@
 # ╬  (Center intersection)
 
 # Importing necessary libraries
-import requests
-import time
+import requests # For sending HTTP requests to the Roku device
+import time # For adding delays
 import subprocess
-from tqdm import tqdm
+from tqdm import tqdm # For displaying progress bars
+import os # For clearing the console
+import platform # For checking the operating system
 
 # Function to check if an app is already installed given the app ID. Returns a Boolean
 def check_app_installed(ip, app_id):
@@ -49,7 +51,7 @@ def try_combinations(ip, app_id):
 
 # Function for installing an app given the app ID
 def install_app(ip, app_id):
-    
+
     # Attempts to install the app
     requests.post(f"http://{ip}:8060/install/{app_id}")
 
@@ -64,7 +66,22 @@ def install_app(ip, app_id):
         print(f"Failed to install app {app_id}.")
 
   
+
+
+# Function to clear the console
+def clear_console():
+    if platform.system() == "Windows":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
+
+# Function to draw the beautiful menu
 def draw_menu():
+    # Clear the console
+    clear_console()
+
     print("""\033[35m
 ██████╗  ██████╗ ██╗  ██╗██╗   ██╗      ██████╗  █████╗ 
 ██╔══██╗██╔═══██╗██║ ██╔╝██║   ██║      ██╔══██╗██╔══██╗
@@ -140,11 +157,24 @@ def select_option(ip):
 base_ip = ""
 
 # Prompts for the ip address, and if it is empty it will attempt to automatically detect the ip address
-ip = input("\nEnter the IP Address of the Roku TV (Leave empty for auto-detection): ")
 
-# automatic detection
-if ip == "":
-    base_ip = input("Enter the base IP: ")
+def print_welcome():
+    print("\033[0m")
+    print("\033[35m╔═════════>\033[0m Welcome to rokuRA, Select an Option:")
+    print("\033[35m╠>\033[0m (1) Input IP Manually")
+    print("\033[35m╠>\033[0m (2) Auto detect IP")
+    print("\033[35m╚═════════\033[0m")
+
+print_welcome()
+choice = input("")
+
+if choice == '1':
+    # Manual input
+    ip = input("Enter the IP address of the Roku device: ")
+
+elif choice == '2':
+    # Begin automatic Detection
+    base_ip = input("Enter the base IP (format: ###.###.##): ")
     timeout = input("\n Please input the delay between each scan, higher values will result in a slower scan but lower values may skip over the device: ")
     # Iterate through the last octet (3 digits) from 255 to 0
     for i in range(255, -1, -1):
@@ -170,6 +200,8 @@ if ip == "":
             # If the request times out, continue to the next IP
             print("Timeout, moving to next ip, {i}")
             continue
+
+
 
 print("Scan completed.")
 select_option(ip)
