@@ -5,7 +5,7 @@ Lost your remote? Need to manage multiple Roku devices at once? Or just want to 
 rokuRA (Roku Remote Access) is a python script that allows for you to control your Roku television from your computer.  
 To do this, you must have access to both the wifi network that the Roku is connected to and the local IP address of the television.  
   
-Why did I make this? I created rokuRA as a learning project to be able to control my home Roku telivision without the use of my remote.  
+Why did I make this? I created rokuRA as a learning project to be able to control my home Roku telivision without the use of my remote.
 I wanted to design a program that can manage and control your roku devices from one centralized piece of software, without the use of any hardware (remotes)  
   
 Do not attempt to use rokuRA on any devices that you do not own.  
