@@ -45,6 +45,7 @@ Method 2: Automatic detection through the script
 When prompted by the script to input an IP, instead press enter without inputting anything.  
 It will first prompt you for a base IP, as it will only scan for the last 3 digits.
 It will then prompt you for a timeout/delay value. 0.5 - 1 is recommended.  
+It will finally prompt you for a starting IP to count down from. Choose 255 if unsure.  
 Now wait while the script automatically checks each final value on the base_ip
     
 ## Uninstallation
