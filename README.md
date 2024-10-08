@@ -3,21 +3,25 @@
 Lost your remote? Need to manage multiple Roku devices at once? Or just want to control your TV in a more interesting way?  
   
 rokuRA (Roku Remote Access) is a python script that allows for you to control your Roku television from your computer.  
-To do this, you must have access to both the wifi network that the Roku is connected to and the local IP address of the television.  
+To do this, you must have access to both the wifi network that your Roku TV is connected to and the local IP address of your television.  
   
-Why did I make this? I created rokuRA as a learning project to be able to control my home Roku telivision without the use of my remote.
-I wanted to design a program that can manage and control your roku devices from one centralized piece of software, without the use of any hardware (remotes)  
+Why make this? I created rokuRA as a learning project to be able to control my home Roku telivision without the use of my remote, and automate certain inputs.  
+I wanted to design a program that can manage and your roku device from one piece of software, without the use of any hardware (remotes).  
   
 Do not attempt to use rokuRA on any devices that you do not own.  
 ![alt text](https://github.com/Its-Rolo/rokuRA/blob/main/rokuRA.png?raw=true)
 
-## Features - may not be up to date
-1. Custom Input - Allows for custom keystrokes/inputs  
-2. Max out volume - maximizes the volume to 100.  
-3. Minimize volume - minimizes the volume to 0.  
-4. Loop shutdown - constantly shutsdown the TV. No more distractions!  
-5. Launch App - launches an application of choice given the ID  
-6. Install an App - installs an application of choice given the ID  
+## Features
+1. Custom Input - Allows for custom keystrokes/inputs.  
+2. Max out Volume - maximizes the volume to 100.  
+3. Minimize Volume - minimizes the volume to 0.  
+4. Custom Volume Change - changes the volume up or down by a custom amount.  
+5. Loop Shutdown - constantly shutsdown the TV. No more distractions!  
+6. Launch App - launches an application of choice given the ID.  
+7. Install an App - installs an application of choice given the ID.  
+8. Automatic 4-digit Pin - automatically tries every 4-digit pin combination.  
+9. Play Youtube Video - asks for a search query and automatically opens youtube and searches for it.
+10. Exit - exits the program.  
   
 These are mostly examples to showcase the possibilities of this program,  
 feel free to customize the functions in rokuRA.py to more practical features to best suit your needs.
@@ -50,16 +54,13 @@ Now wait while the script automatically checks each final value on the base_ip
     
 ## Uninstallation
 
-Step 1, cd into the directory:
+cd into the directory and remove the file:
 ```
 cd /usr/local/bin
-```
-Step 2, remove the file:
-```
 sudo rm rokuRA
 ```
 
-## List of possible Key IDs
+## List of possible Key IDs - Not all confirmed
 
 Arrow Keys:
 ```
@@ -111,7 +112,7 @@ Wake Up: "WakeUp"
 ```
 
 ## Custom Apps
-Maybe you'd rather install a custom app. If you have a Roku TV, install the app, and then navigate to http://ip:8060/query/apps to get the App ID, then you can pass the application ID via the options to install that app instead of webcast.
+If you have a Roku TV, install the app, and then navigate to http://ip:8060/query/apps to get the App ID, then you can pass the application ID
 
 Here is an example of what it looks like, where 2595 is the app id:
 `<app id="2595" type="appl" version="4.8.1110">Crunchyroll</app>`
