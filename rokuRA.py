@@ -114,12 +114,10 @@ def select_option(ip):
         elif option == '2':
             for i in tqdm(range(100), desc="Adjusting Volume Up"):
                 send_keypress(ip, "VolumeUp")
-            requests.post(f"http://{ip}:8060/launch/259656")
 
         elif option == '3':
             for i in tqdm(range(100), desc="Adjusting Volume Down"):
                 send_keypress(ip, "VolumeDown")
-            requests.post(f"http://{ip}:8060/launch/259656")
 
         elif option == '4':
             print("Powering off the TV. Press Ctrl+C to exit.")
