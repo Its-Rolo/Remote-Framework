@@ -11,7 +11,7 @@ I wanted to design a program that can manage and control your roku devices from 
 Do not attempt to use rokuRA on any devices that you do not own.  
 ![alt text](https://github.com/Its-Rolo/rokuRA/blob/main/rokuRA.png?raw=true)
 
-## Features
+## Features - may not be up to date
 1. Custom Input - Allows for custom keystrokes/inputs  
 2. Max out volume - maximizes the volume to 100.  
 3. Minimize volume - minimizes the volume to 0.  
@@ -35,7 +35,7 @@ The script can now be run via the 'rokuRA' command in the terminal
 rokuRA
 ```
 
-## Before executing the script, you must first identify the IP address of the Roku TV. This can be done in multiple ways:
+## Before executing the script, you must first identify the local IP address of the Roku TV. This can be done in multiple ways:
 Method 1: Directly from the Roku TV  
 
 In settings, you can find the local IP address in the network -> about section.  
