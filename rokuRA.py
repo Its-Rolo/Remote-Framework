@@ -74,6 +74,42 @@ def clear_console():
         os.system("clear")
 
 
+def play_youtube_video(ip, video_title):
+    # Launch YouTube app (ID: 837)
+    requests.post(f"http://{ip}:8060/launch/837")
+    time.sleep(5)  # Wait for YouTube to launch
+
+    # Open the YouTube search
+    send_keypress(ip, "Up")  # Navigate to the search option (adjust based on your layout)
+    time.sleep(0.3)
+    send_keypress(ip, "Select")
+    time.sleep(0.3)
+
+    # Type in the video title
+    for char in video_title:
+        send_keypress(ip, f"Lit_{char}")
+        time.sleep(0.2)  # Adjust timing if needed
+
+    send_keypress(ip, "Down")
+    time.sleep(0.2)
+    send_keypress(ip, "Down")
+    time.sleep(0.2)
+    send_keypress(ip, "Down")
+    time.sleep(0.2)
+    send_keypress(ip, "Down")
+    time.sleep(0.2)
+    send_keypress(ip, "Right")
+    time.sleep(0.2)
+    send_keypress(ip, "Right")
+    time.sleep(0.2)
+    # Press 'OK' to select the first result
+    send_keypress(ip, "Select")
+    time.sleep(2)
+    send_keypress(ip, "Select")
+    time.sleep(2)
+    return False
+
+
 # Function to draw the beautiful menu
 def draw_menu():
     # Clear the console
@@ -96,7 +132,8 @@ def draw_menu():
     print("\033[35m╠>\033[0m (6) Launch App")
     print("\033[35m╠>\033[0m (7) Install an App")
     print("\033[35m╠>\033[0m (8) Automatic 4-digit Pin")
-    print("\033[35m╠>\033[0m (9) Exit")
+    print("\033[35m╠>\033[0m (9) Play Youtube Video")
+    print("\033[35m╠>\033[0m (10) Exit")
     print("\033[35m╚═════════\033[0m")
 
 def select_option(ip):
@@ -161,17 +198,24 @@ def select_option(ip):
         elif option == '8':
             # try all possible combinations of the 4-digit pin
             # Must be manually cancelled
-            for i in range(10000):
+            startingValue = int(input("Input the starting value for the auto pin input: "))
+            # Loop starts at the starting value and goes up to 9999
+            for i in range(startingValue, 10000):
                 combination = f"{i:04}"
                 print(combination)
+                
+                # Iterate over each digit in the combination and send the keypress
                 for digit in combination:
                     send_keypress(ip, f"Lit_{digit}")
 
                 send_keypress(ip, "Select")
-                
                 send_keypress(ip, "Up")
 
         elif option == '9':
+            video_title = input("Input the video title to search for: ")
+            play_youtube_video(ip, video_title)
+
+        elif option == '10':
             exit()
         else:
             print("Invalid option, please try again.")
