@@ -115,7 +115,6 @@ def list_installed_apps(ip):
     print(apps)  # Optionally, format this output to make it more readable
 
 
-
 # Function to draw the beautiful menu
 def draw_menu():
     # Clear the console
