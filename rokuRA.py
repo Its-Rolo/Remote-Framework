@@ -176,7 +176,7 @@ elif choice == '2':
     timeout = input("\n Please input the delay between each scan, higher values will result in a slower scan but lower values may skip over the device: ")
     startingValue = input("Input the starting value for the scan (Scans from top down): ")
     # Iterate through the last octet (3 digits) from 255 to 0
-    for i in range(startingValue, -1, -1):
+    for i in range(int(startingValue), -1, -1):
         # Construct the full IP address
         ip = f"{base_ip}.{i}"
         url = f"http://{ip}:8060/query/device-info"
