@@ -65,8 +65,6 @@ def install_app(ip, app_id):
     else:
         print(f"Failed to install app {app_id}.")
 
-  
-
 
 # Function to clear the console
 def clear_console():
@@ -74,7 +72,6 @@ def clear_console():
         os.system("cls")
     else:
         os.system("clear")
-
 
 
 # Function to draw the beautiful menu
@@ -94,10 +91,12 @@ def draw_menu():
     print("\033[35m╠>\033[0m (1) Custom Input")
     print("\033[35m╠>\033[0m (2) Max out Volume")
     print("\033[35m╠>\033[0m (3) Minimize Volume")
-    print("\033[35m╠>\033[0m (3) Loop Shutdown")
-    print("\033[35m╠>\033[0m (5) Launch App")
-    print("\033[35m╠>\033[0m (6) Install an App")
-    print("\033[35m╠>\033[0m (7) Exit")
+    print("\033[35m╠>\033[0m (4) Custom Volume Change")
+    print("\033[35m╠>\033[0m (5) Loop Shutdown")
+    print("\033[35m╠>\033[0m (6) Launch App")
+    print("\033[35m╠>\033[0m (7) Install an App")
+    print("\033[35m╠>\033[0m (8) Automatic 4-digit Pin")
+    print("\033[35m╠>\033[0m (9) Exit")
     print("\033[35m╚═════════\033[0m")
 
 def select_option(ip):
@@ -108,18 +107,35 @@ def select_option(ip):
         option = input("")
         
         if option == '1':
+            # Ask for keystroke ID and send it
             keystroke = input("Enter the key ID: ")
             send_keypress(ip, keystroke)
 
         elif option == '2':
+            # Adjust volume up by 100 (maximize it)
             for i in tqdm(range(100), desc="Adjusting Volume Up"):
                 send_keypress(ip, "VolumeUp")
 
         elif option == '3':
+            # Adjust volume down by 100 (minimize it)
             for i in tqdm(range(100), desc="Adjusting Volume Down"):
                 send_keypress(ip, "VolumeDown")
 
         elif option == '4':
+            # Get inputs for volume adjustment
+            up_or_down = input("Increase or decrease volume? (1/2): ")
+            amount = input("Enter the amount to adjust the volume by: ")
+
+            if up_or_down == '1':
+                for i in tqdm(range(int(amount)), desc="Adjusting Volume"):
+                    send_keypress(ip, "VolumeUp")
+
+            elif up_or_down == '2':
+                for i in tqdm(range(int(amount)), desc="Adjusting Volume"):
+                    send_keypress(ip, "VolumeDown")
+
+        elif option == '5':
+            # Loop to power off the TV
             print("Powering off the TV. Press Ctrl+C to exit.")
             while True:
                 try:
@@ -128,19 +144,34 @@ def select_option(ip):
                 except KeyboardInterrupt:
                     break
 
-        elif option == '5':
+        elif option == '6':
+            # get app ID input and launch it
             app_id = input("Enter the app ID: ")
             requests.post(f"http://{ip}:8060/launch/{app_id}")
             print("Custom app launched!")
 
-        elif option == '6':
+        elif option == '7':
+            # get app ID input and install it
             app_id = input("Enter the app number: ")
             if check_app_installed(ip, app_id):
                 print(f"App {app_id} is already installed")
             else:
                 install_app(ip, app_id)
+            
+        elif option == '8':
+            # try all possible combinations of the 4-digit pin
+            # Must be manually cancelled
+            for i in range(10000):
+                combination = f"{i:04}"
+                print(combination)
+                for digit in combination:
+                    send_keypress(ip, f"Lit_{digit}")
 
-        elif option == '7':
+                send_keypress(ip, "Select")
+                
+                send_keypress(ip, "Up")
+
+        elif option == '9':
             exit()
         else:
             print("Invalid option, please try again.")
