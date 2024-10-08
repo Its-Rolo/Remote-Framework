@@ -109,6 +109,12 @@ def play_youtube_video(ip, video_title):
     time.sleep(2)
     return False
 
+def list_installed_apps(ip):
+    response = requests.get(f"http://{ip}:8060/query/apps")
+    apps = response.text
+    print(apps)  # Optionally, format this output to make it more readable
+
+
 
 # Function to draw the beautiful menu
 def draw_menu():
@@ -133,7 +139,8 @@ def draw_menu():
     print("\033[35m╠>\033[0m (7) Install an App")
     print("\033[35m╠>\033[0m (8) Automatic 4-digit Pin")
     print("\033[35m╠>\033[0m (9) Play Youtube Video")
-    print("\033[35m╠>\033[0m (10) Exit")
+    print("\033[35m╠>\033[0m (10) Check Installed Apps")
+    print("\033[35m╠>\033[0m (11) Exit")
     print("\033[35m╚═════════\033[0m")
 
 def select_option(ip):
@@ -216,6 +223,10 @@ def select_option(ip):
             play_youtube_video(ip, video_title)
 
         elif option == '10':
+            list_installed_apps(ip)
+            input("Press Enter to continue...")
+
+        elif option == '11':
             exit()
         else:
             print("Invalid option, please try again.")
