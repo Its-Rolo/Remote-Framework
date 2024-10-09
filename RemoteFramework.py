@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 
-##############################################################
-# CODE NECESSARY FOR FRAMEWORK. DO NOT EDIT BELOW THIS LINE. #
-##############################################################
+############################################################################################################
+# CODE NECESSARY FOR FRAMEWORK. DO NOT EDIT BELOW THIS LINE. SCROLL FURTHER DOWN FOR WHAT SHOULD BE EDITED #
+############################################################################################################
 
 import requests # For sending HTTP requests to the Roku device
 import time # For adding delays
@@ -92,7 +92,7 @@ def menu_ender():
 #########################################
 
 # Example:
-def check_app_installed(ip, app_id):
+def show_installed_apps(ip):
     request(ip, "apps")
 
 #################################################################################
@@ -134,7 +134,8 @@ def select_option(ip):
         # Display the menu. Do not remove these 2 lines
         draw_menu()
         option = input("")
-        #####################
+
+
         if option == '1': # Edit numbers and add more options as needed
             # Example function, asks for keystroke ID and sends it
             keystroke = input("Enter the key ID: ")
@@ -142,7 +143,6 @@ def select_option(ip):
 
         elif option == '2': # Edit as needed. Copy and paste the elif statement to add more options.
             exit()
-
 
 
 
