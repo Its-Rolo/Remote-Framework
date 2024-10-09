@@ -103,7 +103,8 @@ def select_option(ip):
         # Display the menu. Do not remove these 2 lines
         draw_menu()
         option = input("")
-        #####################
+
+
         if option == '1': # Edit numbers and add more options as needed
             # Example function, asks for keystroke ID and sends it
             keystroke = input("Enter the key ID: ")
@@ -111,8 +112,6 @@ def select_option(ip):
 
         elif option == '2': # Edit as needed. Copy and paste the elif statement to add more options.
             exit()
-
-
 
 
         # Do not remove the next 2 lines
