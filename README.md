@@ -1,122 +1,151 @@
-# rokuRA
+# Remote-Framework
 ## Overview
-Lost your remote? Need to manage multiple Roku devices at once? Or just want to control your TV in a more interesting way?  
+Remote-Framework is a python script that is designed to streamline the process of making a custom local telivision remote.  
+The script is divided into clearly labeled sections, some of which should not be edited.  
+Remote-Framework utilizes http requests to control the device. This works for some platforms, but not all. However, it can be easily edited with some basic python knowledge.  
   
-rokuRA (Roku Remote Access) is a python script that allows for you to control your Roku television from your computer.  
-To do this, you must have access to both the wifi network that your Roku TV is connected to and the local IP address of your television.  
+If you are not knowledgable in python, please read the documentation below on how to easily create your first remote.  
+
+# Documentation
+## Menu functions
+
+**menu_entry(number, text)** is used for creating a menu option/entry for your main menu or welcome message.  
+It takes two parameters (number), which is an integer indicating the order, and (text), which is a string. This string should be whatever you wish to display at the top of your menu.  
   
-Why make this? I created rokuRA as a learning project to be able to control my home Roku telivision without the use of my remote, and automate certain inputs.  
-I wanted to design a program that can manage and your roku device from one piece of software, without the use of any hardware (remotes).  
+Example: 
+```
+menu_entry(1, "Custom Input")
+```
+
+---
+**menu_starter(title)** is used for creating the top bar of your menu or welcome message.  
+It takes one parameter (title), which is a string. This string should be whatever you wish to display at the top of your menu.  
   
-Do not attempt to use rokuRA on any devices that you do not own.  
-![alt text](https://github.com/Its-Rolo/rokuRA/blob/main/rokuRA.png?raw=true)
+Example: 
+```
+menu_starter("Welcome to my remote, Select an Option:")
+```
 
-## Features
-1. Custom Input - Allows for custom keystrokes/inputs.  
-2. Max out Volume - maximizes the volume to 100.  
-3. Minimize Volume - minimizes the volume to 0.  
-4. Custom Volume Change - changes the volume up or down by a custom amount.  
-5. Loop Shutdown - constantly shutsdown the TV. No more distractions!  
-6. Launch App - launches an application of choice given the ID.  
-7. Install an App - installs an application of choice given the ID.  
-8. Automatic 4-digit Pin - automatically tries every 4-digit pin combination.  
-9. Play Youtube Video - asks for a search query and automatically opens youtube and searches for it.
-10. Exit - exits the program.  
+---
+**menu_ender()** is used for creating the bottom bar of your menu or welcome message.  
+It takes no parameters.  
   
-These are mostly examples to showcase the possibilities of this program,  
-feel free to customize the functions in rokuRA.py to more practical features to best suit your needs.
-
-## Usage 
-Linux users can use curl to install the script and make it executable:  
-
-Step 1:
+Example: 
 ```
-sudo curl -L https://raw.githubusercontent.com/Its-Rolo/rokuRA/main/rokuRA.py -o /usr/local/bin/rokuRA
-sudo chmod a+rx /usr/local/bin/rokuRA
-```
-The script can now be run via the 'rokuRA' command in the terminal
-```
-rokuRA
+menu_ender()
 ```
 
-## Before executing the script, you must first identify the local IP address of the Roku TV. This can be done in multiple ways:
-Method 1: Directly from the Roku TV  
+## General functions
 
-In settings, you can find the local IP address in the network -> about section.  
-
-Method 2: Automatic detection through the script  
-
-When prompted by the script to input an IP, instead press enter without inputting anything.  
-It will first prompt you for a base IP, as it will only scan for the last 3 digits.
-It will then prompt you for a timeout/delay value. 0.5 - 1 is recommended.  
-It will finally prompt you for a starting IP to count down from. Choose 255 if unsure.  
-Now wait while the script automatically checks each final value on the base_ip
-    
-## Uninstallation
-
-cd into the directory and remove the file:
+**request(ip, query)** is used for sending a custom query to the device.  
+It takes two parameters (ip), which is the string for the ip address and (query), which is a string for the query you wish to utilize.  
+Requests are done in the following format: http://{ip}:8060/query/{query}  
+However you may edit that for your platform if needed.  
+  
+Example: 
 ```
-cd /usr/local/bin
-sudo rm rokuRA
+request(192.168.68.###, apps)
 ```
 
-## List of possible Key IDs - Not all confirmed
-
-Arrow Keys:
+---
+**send_keypress(ip, key)** is used for sending a custom keypress to the device.    
+It takes two parameters (ip), which is the string for the ip address and (query), which is a string for the keypress you wish to send.  
+Keypresses may be done differenty for each platform. Research your desired platform and adjust accordingly.  
+  
+Example: 
 ```
-Up: "Up"
-Down: "Down"
-Left: "Left"
-Right: "Right"
-```
-Navigation Controls:
-```
-OK button: "Select"
-Back: "Back"
-Home: "Home"
-Info or asterisk button (*): "Info"
-```
-Playback Controls:
-```
-Play: "Play"
-Pause: "Pause"
-Toggle Play/Pause: "PlayPause"
-Rewind: "Rewind"
-Fast Forward: "FastForward"
-Reverse one frame: "ReverseFrame"
-Forward one frame: "ForwardFrame"
-Instant Replay: "InstantReplay"
-Open Search: "Search"
-```
-Media Control Keys:
-```
-Mute/Unmute: "VolumeMute"
-Channel Up: "ChannelUp"
-Channel Down: "ChannelDown"
-```
-Input Controls:
-```
-TV Input: "InputTuner"
-HDMI 1: "InputHDMI1"
-HDMI 2: "InputHDMI2"
-HDMI 3: "InputHDMI3"
-HDMI 4: "InputHDMI4"
-AV Input: "InputAV"
-Component Input: "InputComponent"
-```
-Special Commands:
-```
-Find Remote: "FindRemote"
-Sleep Mode: "Sleep"
-Wake Up: "WakeUp"
+request(192.168.68.###, apps)
 ```
 
-## Custom Apps
-If you have a Roku TV, install the app, and then navigate to http://ip:8060/query/apps to get the App ID, then you can pass the application ID
+## Creating the welcome menu
+Remote-Framework comes with a pre-built fully functional welcome menu and does not need editing to work.  
+To create your own welcome menu, you can utilize the menu functions to draw your welcome menu:  
+```
+def print_welcome():
+    # Edit this function to customize the welcome message.
+    # Example:
+    menu_starter("Welcome to my remote, Select an Option:")
+    menu_entry(1, "Input IP Manually")
+    menu_entry(2, "Auto detect IP")
+    menu_ender()
+```
 
-Here is an example of what it looks like, where 2595 is the app id:
-`<app id="2595" type="appl" version="4.8.1110">Crunchyroll</app>`
+## Creating the main menu
+Remote-Framework comes with a pre-built fully functional main menu and does not need editing to work.  
+To create your own main menu, you can utilize the menu functions to draw your welcome menu:  
+```
+def draw_menu():
+    # Clear the console, do not remove this line
+    clear_console()
+
+    # Draw the menu using the functions from the framework. You can customize this as needed.
+    ascii_art("""\033[35m
+__________                       __          
+\______   \ ____   _____   _____/  |_  ____  
+|       _// __ \ /     \ /  _ \   __\/ __ \ 
+|    |   \  ___/|  Y Y  (  <_> )  | \  ___/ 
+|____|_  /\___  >__|_|  /\____/|__|  \___  >
+        \/     \/      \/                 \/ """)
+    menu_starter("Welcome to my remote, Select an Option:")
+    menu_entry(1, "Custom Input")
+    menu_entry(2, "Exit")
+    menu_ender()
+```
+
+## Editing and adding more options
+Remote-Framework comes with two prebuilt functional menu options, and does not need editing to work.  
+The default looks like this:  
+```
+def select_option(ip):
+    while True:
+
+        # Display the menu. Do not remove these 2 lines
+        draw_menu()
+        option = input("")
+        #####################
+        if option == '1': # Edit numbers and add more options as needed
+            # Example function, asks for keystroke ID and sends it
+            keystroke = input("Enter the key ID: ")
+            send_keypress(ip, keystroke)
+
+        elif option == '2': # Edit as needed. Copy and paste the elif statement to add more options.
+            exit()
+
+
+
+
+        # Do not remove the next 2 lines
+        else:
+            print("Invalid option, please try again.")
+```
+You may edit the code inside of each if statement to change what each option does.  
+To add more options, simply add more elif statements:  
+```
+def select_option(ip):
+    while True:
+
+        # Display the menu. Do not remove these 2 lines
+        draw_menu()
+        option = input("")
+
+        if option == '1': # Edit numbers and add more options as needed
+            # Example function, asks for keystroke ID and sends it
+            keystroke = input("Enter the key ID: ")
+            send_keypress(ip, keystroke)
+
+        elif option == '2':
+            print("This is another menu option!")
+
+        elif option == '3': # Edit as needed. Copy and paste the elif statement to add more options.
+            exit()
+
+
+        # Do not remove the next 2 lines
+        else:
+            print("Invalid option, please try again.")
+```
 
 ## License
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
