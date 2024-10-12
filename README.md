@@ -3,7 +3,7 @@
 Remote-Framework is a python script that is designed to streamline the process of making a custom local telivision remote.  
   
 The script is divided into clearly labeled sections, some of which should not be edited.  
-Remote-Framework utilizes http requests to control the device. This works for some platforms, but not all. However, it can be easily edited with some basic python knowledge.  
+Remote-Framework utilizes http requests to control the device. This works for some platforms, but not all. Despite this, it can be easily edited with some basic python knowledge.  
   
 If you are not knowledgable in python, please read the documentation below on how to easily create your first remote.  
 
