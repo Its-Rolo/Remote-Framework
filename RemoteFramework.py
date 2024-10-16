@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 
-############################################################################################################
-# CODE NECESSARY FOR FRAMEWORK. DO NOT EDIT BELOW THIS LINE. SCROLL FURTHER DOWN FOR WHAT SHOULD BE EDITED #
-############################################################################################################
+#############################################################################################################
+# CODE NECESSARY FOR THE SCRIPT. DO NOT EDIT BELOW THIS LINE. SCROLL FURTHER DOWN FOR WHAT SHOULD BE EDITED #
+#############################################################################################################
 
 import requests # For sending HTTP requests to the Roku device
 import time # For adding delays
@@ -56,8 +56,6 @@ def auto_detection():
             print("Timeout, moving to next ip, {i}")
             continue
         print("Scan completed.")
-
-base_ip = ""
 
 # Function to clear the console
 def clear_console():
